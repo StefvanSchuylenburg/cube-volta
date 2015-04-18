@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: spikematerial
-  m_Shader: {fileID: 3, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: enemy
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -84,10 +84,6 @@ Material:
         second: .5
       data:
         first:
-          name: _Shininess
-        second: .0439999998
-      data:
-        first:
           name: _SrcBlend
         second: 1
       data:
@@ -142,11 +138,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .610294104, g: .578881919, b: .578881919, a: 1}
-      data:
-        first:
-          name: _SpecColor
-        second: {r: 1, g: .654411793, b: .654411793, a: 1}
+        second: {r: .992647052, g: .481222391, b: .408737004, a: 1}
       data:
         first:
           name: _EmissionColorUI
