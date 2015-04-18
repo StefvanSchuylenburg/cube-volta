@@ -99,19 +99,19 @@ public class Rotator : MonoBehaviour {
         // waiting for key presses
         if (Input.GetButtonDown("RotateRight"))
         {
-            ToRotate(true);
+            ToRotate(false);
         }
         else if (Input.GetButtonDown("RotateLeft"))
         {
-            ToRotate(false);
+            ToRotate(true);
         }
     }
 
     /**
      * Sets the state to rotating and sets the rotateTowards value.
-     * @param rotateRight when true we rotate to the right, otherwise to the left.
+     * @param rotateLeft when true we rotate to the left, otherwise to the right.
      */
-    private void ToRotate(bool rotateRight)
+    private void ToRotate(bool rotateLeft)
     {
         // turn off gravity
         SetGravity(false);
@@ -121,7 +121,7 @@ public class Rotator : MonoBehaviour {
         // the current rotation
         var rotation = this.transform.rotation;
         // where to rotate with
-        float angle = rotateRight ? 90 : -90;
+        float angle = rotateLeft ? 90 : -90;
         var rotateWith = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // set the target
