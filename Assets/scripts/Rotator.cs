@@ -42,6 +42,11 @@ public class Rotator : MonoBehaviour {
     private Quaternion rotateTowards;
 
     /**
+     * Whether a physics update has been done in the last frame.
+     */
+    private bool hasUpdateElapsed;
+
+    /**
      * Rotates the box to the left
      */
     public void RotateLeft()
@@ -85,6 +90,11 @@ public class Rotator : MonoBehaviour {
                 break;
         }
 	}
+
+    void FixedUpdate()
+    {
+        hasUpdateElapsed = true; // an update has elapsed
+    }
 
     /**
      * We are waiting for user input.
@@ -152,6 +162,9 @@ public class Rotator : MonoBehaviour {
 
         // and fall again
         SetGravity(true);
+
+        // check whether an update will be done
+        hasUpdateElapsed = false;
     }
 
     private void Falling()
@@ -172,7 +185,7 @@ public class Rotator : MonoBehaviour {
         }
 
         // go back to idle when required
-        if (!anyMoves)
+        if (!anyMoves && hasUpdateElapsed)
         {
             ToIdle();
         }
