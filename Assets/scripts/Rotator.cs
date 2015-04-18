@@ -11,6 +11,11 @@ public class Rotator : MonoBehaviour {
      */
     public float rotationSpeed = 1f;
 
+    /**
+     * How far two quaternions are allowed to be from each other before considering them equal.
+     */
+    private static float ANGLE_EPSILON = 2;
+
     /** The states this object can be in */
     private enum State { Idle, Rotating, Falling };
 
@@ -92,8 +97,10 @@ public class Rotator : MonoBehaviour {
         transform.rotation = Quaternion.Slerp(transform.rotation, rotateTowards, rotationSpeed * Time.deltaTime);
        
         // checking if we can move to the next state
-        if (transform.rotation == rotateTowards) // relying on the == implementation of Quaternions (should be approxiomate).
+        if (QuaternionClose(transform.rotation, rotateTowards))
         {
+            // first make sure we are at towards (not just close to it)
+            transform.rotation = rotateTowards;
             ToFalling();
         }
     }
@@ -122,6 +129,14 @@ public class Rotator : MonoBehaviour {
         {
             body.useGravity = useGravity;
         }
+    }
+
+    /**
+     * Determines whether two quaternions are close
+     */
+    private bool QuaternionClose(Quaternion q, Quaternion p)
+    {
+        return Quaternion.Angle(q, p) <= ANGLE_EPSILON;
     }
 
 }
