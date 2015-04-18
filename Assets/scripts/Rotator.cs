@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
+using System;
 using System.Collections;
 
 /**
@@ -15,6 +17,12 @@ public class Rotator : MonoBehaviour {
      * How long rotating is disabled when the characters are falling.
      */
     public float fallTime = 1.5f;
+
+    /**
+     * Triggered when the Rotator either starts disallowing interactions or start allowing interactions.
+     * When allowing the given bool will be true.
+     */
+    public BoolEvent onInteractChange = new BoolEvent();
 
     /**
      * How far two quaternions are allowed to be from each other before considering them equal.
@@ -37,6 +45,28 @@ public class Rotator : MonoBehaviour {
      * The time we are in the falling state.
      */
     private float timeInFalling;
+
+    /**
+     * Rotates the box to the left
+     */
+    public void RotateLeft()
+    {
+        if (state == State.Idle)
+        {
+            ToRotate(false);
+        }
+    }
+
+    /**
+     * Rotates the box to the right
+     */
+    public void RotateRight()
+    {
+        if (state == State.Idle)
+        {
+            ToRotate(true);
+        }
+    }
 
 	void Start () {
         state = State.Idle;
@@ -85,6 +115,8 @@ public class Rotator : MonoBehaviour {
     {
         // turn off gravity
         SetGravity(false);
+        // disable interaction
+        onInteractChange.Invoke(false);
 
         // the current rotation
         var rotation = this.transform.rotation;
@@ -135,6 +167,9 @@ public class Rotator : MonoBehaviour {
         if (timeInFalling >= fallTime) // falling is done
         {
             state = State.Idle;
+
+            // enable interaction again
+            onInteractChange.Invoke(true);
         }
     }
 
@@ -159,5 +194,11 @@ public class Rotator : MonoBehaviour {
     {
         return Quaternion.Angle(q, p) <= ANGLE_EPSILON;
     }
+
+    /**
+     * Small class to use Bool events for this Rotator
+     */
+    [Serializable]
+    public class BoolEvent : UnityEvent<bool> { }
 
 }
