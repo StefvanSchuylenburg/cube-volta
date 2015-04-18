@@ -42,11 +42,6 @@ public class Rotator : MonoBehaviour {
     private Quaternion rotateTowards;
 
     /**
-     * The time we are in the falling state.
-     */
-    private float timeInFalling;
-
-    /**
      * Rotates the box to the left
      */
     public void RotateLeft()
@@ -157,20 +152,40 @@ public class Rotator : MonoBehaviour {
 
         // and fall again
         SetGravity(true);
-        timeInFalling = 0;
     }
 
     private void Falling()
     {
-        timeInFalling += Time.deltaTime;
+        // TODO: this method is still slow, especially the GetComponentsInChildren
+        // check whether all objects are no longer moving
+        var childBodies = this.gameObject.GetComponentsInChildren<Rigidbody>();
 
-        if (timeInFalling >= fallTime) // falling is done
+        // whether there is a child that has velocity left
+        var anyMoves = false;
+        foreach (var body in childBodies)
         {
-            state = State.Idle;
-
-            // enable interaction again
-            onInteractChange.Invoke(true);
+            if (body.velocity != Vector3.zero)  // velocity is close to zero
+            {
+                anyMoves |= true;
+                break;
+            }
         }
+
+        // go back to idle when required
+        if (!anyMoves)
+        {
+            ToIdle();
+        }
+    }
+
+    /**
+     * Sets state back to Idle and allows interaction again
+     */
+    private void ToIdle()
+    {
+
+        this.state = State.Idle;
+        onInteractChange.Invoke(true);
     }
 
 
