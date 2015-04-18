@@ -22,4 +22,10 @@ public class Menu : MonoBehaviour {
     {
         Application.LoadLevel(name);
     }
+
+    public void ReloadLevel()
+    {
+        var levelName = Application.loadedLevelName;
+        LoadLevel(levelName);
+    }
 }
