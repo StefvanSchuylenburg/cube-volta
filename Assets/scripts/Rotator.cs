@@ -12,6 +12,11 @@ public class Rotator : MonoBehaviour {
     public float rotationSpeed = 1f;
 
     /**
+     * How long rotating is disabled when the characters are falling.
+     */
+    public float fallTime = 1.5f;
+
+    /**
      * How far two quaternions are allowed to be from each other before considering them equal.
      */
     private static float ANGLE_EPSILON = 2;
@@ -27,6 +32,11 @@ public class Rotator : MonoBehaviour {
      * When we are at this value, we transform into the falling state.
      */
     private Quaternion rotateTowards;
+
+    /**
+     * The time we are in the falling state.
+     */
+    private float timeInFalling;
 
 	void Start () {
         state = State.Idle;
@@ -44,6 +54,7 @@ public class Rotator : MonoBehaviour {
                 Rotating();
                 break;
             case State.Falling:
+                Falling();
                 break;
             default:
                 break;
@@ -110,11 +121,21 @@ public class Rotator : MonoBehaviour {
      */
     private void ToFalling()
     {
-        // TODO: just for testing now
-        state = State.Idle;
+        state = State.Falling;
 
         // and fall again
         SetGravity(true);
+        timeInFalling = 0;
+    }
+
+    private void Falling()
+    {
+        timeInFalling += Time.deltaTime;
+
+        if (timeInFalling >= fallTime) // falling is done
+        {
+            state = State.Idle;
+        }
     }
 
 
