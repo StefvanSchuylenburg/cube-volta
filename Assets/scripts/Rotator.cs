@@ -67,6 +67,9 @@ public class Rotator : MonoBehaviour {
      */
     private void ToRotate(bool rotateRight)
     {
+        // turn off gravity
+        SetGravity(false);
+
         // the current rotation
         var rotation = this.transform.rotation;
         // where to rotate with
@@ -102,7 +105,23 @@ public class Rotator : MonoBehaviour {
     {
         // TODO: just for testing now
         state = State.Idle;
+
+        // and fall again
+        SetGravity(true);
     }
 
+
+    /**
+     * Turns gravity on or off (depending on useGravity).
+     * This only affects the children of this object.
+     */
+    private void SetGravity(bool useGravity)
+    {
+        var childBodies = this.gameObject.GetComponentsInChildren<Rigidbody>();
+        foreach (var body in childBodies)
+        {
+            body.useGravity = useGravity;
+        }
+    }
 
 }
