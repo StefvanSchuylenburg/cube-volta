@@ -9,6 +9,7 @@ Library/
 # ===================================== #
 ExportedObj/
 obj/
+build/
 *.svd
 *.userprefs
 /*.csproj
