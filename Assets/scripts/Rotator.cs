@@ -182,10 +182,6 @@ public class Rotator : MonoBehaviour {
                 anyMoves |= true;
                 break;
             }
-            else 
-            {
-                SnapToGrid(body.gameObject);
-            }
         }
 
         // go back to idle when required
@@ -200,6 +196,11 @@ public class Rotator : MonoBehaviour {
      */
     private void ToIdle()
     {
+        var childBodies = this.gameObject.GetComponentsInChildren<Rigidbody>();
+        foreach (var body in childBodies)
+        {
+            SnapToGrid(body.gameObject);
+        }
 
         this.state = State.Idle;
         onInteractChange.Invoke(true);
