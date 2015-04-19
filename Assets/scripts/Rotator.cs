@@ -132,7 +132,7 @@ public class Rotator : MonoBehaviour {
         // set the target
         rotateTowards = rotation * rotateWith;
 
-        // and start rotating!
+        // and start rotating
         state = State.Rotating;
     }
 
@@ -182,6 +182,10 @@ public class Rotator : MonoBehaviour {
                 anyMoves |= true;
                 break;
             }
+            else 
+            {
+                SnapToGrid(body.gameObject);
+            }
         }
 
         // go back to idle when required
@@ -221,6 +225,20 @@ public class Rotator : MonoBehaviour {
     private bool QuaternionClose(Quaternion q, Quaternion p)
     {
         return Quaternion.Angle(q, p) <= ANGLE_EPSILON;
+    }
+
+    /// <summary>
+    /// Snaps this object to the grid, assuming it's done with falling.
+    /// </summary>
+    /// <param name="gameObject"></param> the gameobject to snap
+    private void SnapToGrid(GameObject gameObject)
+    {
+        var x = gameObject.transform.position.x;
+        var y = gameObject.transform.position.y;
+        var z = gameObject.transform.position.z;
+
+        gameObject.transform.position = 
+            new Vector3((float)Math.Round(x), (float)Math.Round(y), (float)Math.Round(z));
     }
 
     /**
