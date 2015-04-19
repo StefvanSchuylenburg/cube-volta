@@ -45,16 +45,16 @@ public class GameState : MonoBehaviour {
         // check whether all players are alive
         var allPlayersAlive = players.All(player => player.isAlive);
 
-        if (allPlayersAlive)
+        if (!allPlayersAlive)
         {
-            onWin.Invoke();
+            onGameOver.Invoke();
         }
         else
         {
             var allEnemiesDead = enemies.All(enemy => !enemy.isAlive);
             if (allEnemiesDead)
             {
-                onGameOver.Invoke();
+                onWin.Invoke();
             }
         }
     }
