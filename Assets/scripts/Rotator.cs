@@ -24,6 +24,11 @@ public class Rotator : MonoBehaviour {
      */
     public BoolEvent onInteractChange = new BoolEvent();
 
+    // Events for when states has changed.
+    public UnityEvent onStartRotating = new UnityEvent();
+    public UnityEvent onStartFalling = new UnityEvent();
+    public UnityEvent onStartIdle = new UnityEvent();
+
     /**
      * How far two quaternions are allowed to be from each other before considering them equal.
      */
@@ -70,6 +75,7 @@ public class Rotator : MonoBehaviour {
 
 	void Start () {
         state = State.Idle;
+        onStartIdle.Invoke();
 	}
 	
 	// Update is called once per frame
@@ -134,6 +140,7 @@ public class Rotator : MonoBehaviour {
 
         // and start rotating
         state = State.Rotating;
+        onStartRotating.Invoke();
     }
 
     /**
@@ -159,6 +166,7 @@ public class Rotator : MonoBehaviour {
     private void ToFalling()
     {
         state = State.Falling;
+        onStartFalling.Invoke();
 
         // and fall again
         SetGravity(true);
@@ -203,6 +211,7 @@ public class Rotator : MonoBehaviour {
         }
 
         this.state = State.Idle;
+        onStartIdle.Invoke();
         onInteractChange.Invoke(true);
     }
 
