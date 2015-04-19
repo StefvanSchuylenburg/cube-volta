@@ -44,7 +44,7 @@ Transform:
   m_GameObject: {fileID: 192180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1, y: -4, z: 0}
-  m_LocalScale: {x: .980000019, y: .980000019, z: .980000019}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 470278}
   m_Father: {fileID: 0}
@@ -117,7 +117,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: .980000019, y: .980000019, z: .980000019}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &10865710
 Light:
@@ -172,6 +172,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 2100000, guid: ec381b33f2a8a0344849246d5e0fe28f,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 10865710}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
