@@ -23,7 +23,7 @@ public class Spiker : MonoBehaviour {
         }
 
         // fix position of collided object to spike.
-        other.gameObject.transform.position = this.gameObject.transform.position;
+        //other.gameObject.transform.position = this.gameObject.transform.position;
         // the spike is not needed anymore
         this.gameObject.SetActive(false);
 

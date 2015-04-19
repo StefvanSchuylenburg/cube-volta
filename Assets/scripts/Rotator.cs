@@ -243,12 +243,15 @@ public class Rotator : MonoBehaviour {
     /// <param name="gameObject"></param> the gameobject to snap
     private void SnapToGrid(GameObject gameObject)
     {
-        var x = gameObject.transform.position.x;
-        var y = gameObject.transform.position.y;
-        var z = gameObject.transform.position.z;
+        // position relative to the rotator
+        var relPos = transform.InverseTransformPoint(gameObject.transform.position);
+        // rounding down
+        var roundRelPos = new Vector3(Mathf.Round(relPos.x), Mathf.Round(relPos.y), Mathf.Round(relPos.z));
+        // going back to world coordinates
+        var worldPos = transform.TransformPoint(roundRelPos);
 
-        gameObject.transform.position = 
-            new Vector3((float)Math.Round(x), (float)Math.Round(y), (float)Math.Round(z));
+        // and setting the new value
+        gameObject.transform.position = worldPos;
     }
 
     /**
