@@ -19,6 +19,11 @@ public class Rotator : MonoBehaviour {
     public float fallTime = 1.5f;
 
     /**
+     * Allows rotation in the third dimension.
+     */
+    public bool allow3dRotation = false;
+
+    /**
      * Triggered when the Rotator either starts disallowing interactions or start allowing interactions.
      * When allowing the given bool will be true.
      */
@@ -58,7 +63,7 @@ public class Rotator : MonoBehaviour {
     {
         if (state == State.Idle)
         {
-            ToRotate(false);
+            ToRotate(Vector3.forward);
         }
     }
 
@@ -69,9 +74,33 @@ public class Rotator : MonoBehaviour {
     {
         if (state == State.Idle)
         {
-            ToRotate(true);
+            ToRotate(-Vector3.forward);
         }
     }
+
+    /**
+     * Rotates the box away from you.
+     */
+    public void RotateForward()
+    {
+        if (state == State.Idle && allow3dRotation)
+        {
+            ToRotate(Vector3.right);
+        }
+    }
+
+
+    /**
+     * Rotates the box to you.
+     */
+    public void RotateBackward()
+    {
+        if (state == State.Idle && allow3dRotation)
+        {
+            ToRotate(Vector3.left);
+        }
+    }
+
 
 	void Start () {
         state = State.Idle;
@@ -110,19 +139,30 @@ public class Rotator : MonoBehaviour {
         // waiting for key presses
         if (Input.GetButtonDown("RotateRight"))
         {
-            ToRotate(false);
+            RotateRight();
         }
         else if (Input.GetButtonDown("RotateLeft"))
         {
-            ToRotate(true);
+            RotateLeft();
+        }
+        else if (allow3dRotation)
+        {
+            if (Input.GetButtonDown("RotateForward"))
+            {
+                RotateForward();
+            }
+            else if (Input.GetButtonDown("RotateBackward"))
+            {
+                RotateBackward();
+            }
         }
     }
 
     /**
      * Sets the state to rotating and sets the rotateTowards value.
-     * @param rotateLeft when true we rotate to the left, otherwise to the right.
+     * @param around The vector to rotate around
      */
-    private void ToRotate(bool rotateLeft)
+    private void ToRotate(Vector3 around)
     {
         // turn off gravity
         SetGravity(false);
@@ -132,8 +172,8 @@ public class Rotator : MonoBehaviour {
         // the current rotation
         var rotation = this.transform.rotation;
         // where to rotate with
-        float angle = rotateLeft ? 90 : -90;
-        var rotateWith = Quaternion.AngleAxis(angle, Vector3.forward);
+        var relAround = transform.InverseTransformDirection(around);
+        var rotateWith = Quaternion.AngleAxis(90, relAround);
 
         // set the target
         rotateTowards = rotation * rotateWith;
