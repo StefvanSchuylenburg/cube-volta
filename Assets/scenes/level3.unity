@@ -44,7 +44,7 @@ LevelGameManager:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -141,6 +141,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11409448, guid: 57bf0cd18faa2cd40857783c5fbd46e9, type: 2}
+      propertyPath: enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 482622, guid: 57bf0cd18faa2cd40857783c5fbd46e9, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5.96046448e-08
@@ -179,12 +183,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 477734, guid: 57bf0cd18faa2cd40857783c5fbd46e9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 436406, guid: 57bf0cd18faa2cd40857783c5fbd46e9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 11409448, guid: 57bf0cd18faa2cd40857783c5fbd46e9, type: 2}
+      propertyPath: enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 1225209672}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57bf0cd18faa2cd40857783c5fbd46e9, type: 2}
   m_IsPrefabParent: 0
@@ -272,6 +280,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2dccf8ecc87a004aac6c9e08d4760a6, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1225209672 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11420130, guid: 0d148b7d442d8cd4f9a4d48b14f67a94,
+    type: 2}
+  m_PrefabInternal: {fileID: 31470901}
+  m_Script: {fileID: 11500000, guid: 64e78f1643cc61243b9f0b8e1c9167eb, type: 3}
 --- !u!4 &1827620167 stripped
 Transform:
   m_PrefabParentObject: {fileID: 477466, guid: 57bf0cd18faa2cd40857783c5fbd46e9, type: 2}
