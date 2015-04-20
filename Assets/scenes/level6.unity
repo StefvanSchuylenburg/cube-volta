@@ -1519,22 +1519,6 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11495456, guid: 977b24a3d9017e8479c80e6c9c103919, type: 2}
-      propertyPath: onInteractChange.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495456, guid: 977b24a3d9017e8479c80e6c9c103919, type: 2}
-      propertyPath: onInteractChange.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495456, guid: 977b24a3d9017e8479c80e6c9c103919, type: 2}
-      propertyPath: onInteractChange.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495456, guid: 977b24a3d9017e8479c80e6c9c103919, type: 2}
-      propertyPath: onInteractChange.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 977b24a3d9017e8479c80e6c9c103919, type: 2}
   m_IsPrefabParent: 0

@@ -14,11 +14,6 @@ public class Rotator : MonoBehaviour {
     public float rotationSpeed = 1f;
 
     /**
-     * How long rotating is disabled when the characters are falling.
-     */
-    public float fallTime = 1.5f;
-
-    /**
      * Allows rotation in the third dimension.
      */
     public bool allow3dRotation = false;
