@@ -1,0 +1,1 @@
+This folder contains screenshots which are used to promote the game.
